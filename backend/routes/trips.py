@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from extensions import db
 from models import Trip, Entry
-from schemas import TripSchema, EntrySchema
+from schema import TripSchema, EntrySchema
 
 trips_bp = Blueprint("trips", __name__, url_prefix="/api")
 trip_schema = TripSchema()
