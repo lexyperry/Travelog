@@ -4,6 +4,8 @@ from datetime import timedelta
 from extensions import db, migrate, jwt, CORS
 from routes.auth import auth_bp
 from routes.trips import trips_bp
+from routes.uploads import uploads_bp
+from routes.photos import photos_bp
 
 def create_app():
     app = Flask(__name__)
@@ -22,14 +24,19 @@ def create_app():
     jwt.init_app(app)
 
     CORS(app,
-         origins=[os.getenv("CORS_ORIGIN", "http://localhost:5173")],
-         supports_credentials=True)
+        origins=[os.getenv("CORS_ORIGIN","http://localhost:5173")],
+        supports_credentials=True,
+        allow_headers=["Content-Type", "X-CSRF-TOKEN"],
+        methods=["GET","POST","PATCH","PUT","DELETE","OPTIONS"]
+    )
 
     @app.get("/api/health")
     def health(): return {"ok": True}
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(trips_bp)
+    app.register_blueprint(uploads_bp)
+    app.register_blueprint(photos_bp)
     return app
 
 app = create_app()

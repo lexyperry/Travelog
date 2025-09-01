@@ -33,3 +33,15 @@ class Entry(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 # Photo & TripSummary can be added after MVP (or now if you want).
+# ...existing imports/classes...
+class Photo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    trip_id = db.Column(db.Integer, db.ForeignKey("trip.id"), nullable=False)
+    entry_id = db.Column(db.Integer, db.ForeignKey("entry.id"), nullable=True)
+    url = db.Column(db.String(500), nullable=False)
+    provider_id = db.Column(db.String(200), nullable=False)  # Cloudinary public_id
+    caption = db.Column(db.String(300))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    trip = db.relationship("Trip", backref="photos")
