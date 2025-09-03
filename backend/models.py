@@ -32,8 +32,6 @@ class Entry(db.Model):
     place = db.Column(db.String(200))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-# Photo & TripSummary can be added after MVP (or now if you want).
-# ...existing imports/classes...
 class Photo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

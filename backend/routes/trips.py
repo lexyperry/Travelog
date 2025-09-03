@@ -14,6 +14,7 @@ entries_schema = EntrySchema(many=True)
 def _owned_trip_or_404(trip_id, uid):
     return Trip.query.filter_by(id=trip_id, user_id=uid).first_or_404()
 
+# formate the date fields
 def parse_date(s):
     if not s:
         return None

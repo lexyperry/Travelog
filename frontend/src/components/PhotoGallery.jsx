@@ -6,14 +6,21 @@ export default function PhotoGallery({ tripId }) {
   const [err, setErr] = useState("");
 
   async function load() {
-    try { setPhotos(await api.listPhotos(tripId)); } catch (e) { setErr(e.message); }
+    try { 
+      setPhotos(await api.listPhotos(tripId)); //get list of photos by tripId
+    } catch (e) {
+       setErr(e.message); 
+      }
   }
-  useEffect(() => { load(); }, [tripId]);
+  //load all photos by trip id every time the tripId is updated/changed
+  useEffect(() => { 
+    load();
+   }, [tripId]);
 
   async function remove(id) {
     if (!confirm("Delete this photo?")) return;
     await api.deletePhoto(id);
-    setPhotos(p => p.filter(x => x.id !== id));
+    setPhotos(p => p.filter(x => x.id !== id)); //reset the photo list without the one that was deleted
   }
 
   if (err) return <div className="text-red-600">{err}</div>;

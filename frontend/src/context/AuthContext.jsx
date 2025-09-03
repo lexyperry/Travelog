@@ -14,7 +14,7 @@ export function AuthProvider({ children }) {
         finally {setLoading(false); }
 
     }
-
+    //set user values when loaded for the first time
     useEffect(() => { loadMe(); }, []);
 
     const login = async (email, password) => {

@@ -8,6 +8,7 @@ export default function Trips() {
     const [err, setErr] = useState("");
     const nav = useNavigate();
 
+    //set trips when page is loaded for the first time
     async function load() {
         setErr("");
         try {

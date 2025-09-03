@@ -7,11 +7,13 @@ export default function PhotoUploader({ tripId, onUploaded }) {
   const [err, setErr] = useState("");
 
   async function upload() {
+    //if theres no file, dont do anything
     if (!file) return;
-    setBusy(true); setErr("");
+
+    setBusy(true); 
+    setErr("");
     try {
       const sign = await api.signUpload(tripId);
-
       const fd = new FormData();
       fd.append("file", file);
       fd.append("api_key", sign.api_key);
@@ -19,6 +21,7 @@ export default function PhotoUploader({ tripId, onUploaded }) {
       fd.append("signature", sign.signature);
       fd.append("folder", sign.folder);
 
+      //uploading image to cloudinary
       const cloudUrl = `https://api.cloudinary.com/v1_1/${sign.cloud_name}/image/upload`;
       const res = await fetch(cloudUrl, { method: "POST", body: fd });
       if (!res.ok) {

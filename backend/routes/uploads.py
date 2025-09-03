@@ -12,6 +12,7 @@ cloudinary.config(
     secure=True,
 )
 
+# make sure our cloudinary configs are good
 def require_cloudinary_config():
     cfg = cloudinary.config()
     if not cfg.cloud_name or not cfg.api_key or not cfg.api_secret:

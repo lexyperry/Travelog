@@ -8,6 +8,7 @@ export default function TripDetail() {
   const { id } = useParams();
   const [trip, setTrip] = useState(null);
 
+  //call the get API every time the id parameter is updated/changed
   useEffect(() => { api.getTrip(id).then(setTrip); }, [id]);
 
   if (!trip) return <div className="p-6">Loading…</div>;
