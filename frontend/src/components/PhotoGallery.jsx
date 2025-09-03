@@ -24,6 +24,7 @@ export default function PhotoGallery({ tripId }) {
       {photos.map(p => (
         <div key={p.id} className="relative group">
           <img src={p.url} alt={p.caption || "trip photo"} className="w-full h-40 object-cover rounded" />
+          <br />
           <button onClick={() => remove(p.id)}
             className="absolute top-2 right-2 bg-white/90 text-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100">
             Delete

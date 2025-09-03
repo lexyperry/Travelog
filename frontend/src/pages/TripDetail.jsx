@@ -18,13 +18,12 @@ export default function TripDetail() {
       <div className="grid md:grid-cols-2 gap-6">
         <div>
           <h2 className="font-semibold mb-2">Photos</h2>
-          <PhotoUploader tripId={id} onUploaded={() => { /* gallery refresh handled inside PhotoGallery if desired */ }} />
+          <PhotoUploader tripId={id} onUploaded={() => { }} />
           <div className="mt-4">
             <PhotoGallery tripId={id} />
           </div>
         </div>
         <div>
-          {/* your entries list/form goes here */}
           <p className="text-sm text-gray-600">Location: {trip.location || "-"}</p>
         </div>
       </div>

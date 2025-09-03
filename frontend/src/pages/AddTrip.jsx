@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
 import PhotoUploader from "../components/PhotoUploader";
-import PhotoGallery from "../components/PhotoGallery"; // optional but nice
+import PhotoGallery from "../components/PhotoGallery";
 
 export default function AddTrip() {
     const nav = useNavigate();
@@ -15,7 +15,7 @@ export default function AddTrip() {
     });
     const [err, setErr] = useState("");
     const [busy, setBusy] = useState(false);
-    const [trip, setTrip] = useState(null); // once created, holds the new trip
+    const [trip, setTrip] = useState(null); 
 
     function onChange(e) {
         const { name, value } = e.target;
@@ -28,7 +28,7 @@ export default function AddTrip() {
         setBusy(true);
         try {
             const created = await api.createTrip(form);
-            setTrip(created); // created.id will be used by PhotoUploader
+            setTrip(created); 
         } catch (e) {
             setErr(e.message || "Failed to create trip");
         } finally {
@@ -45,7 +45,7 @@ export default function AddTrip() {
                     You can upload a few photos now, or skip and add them later from the trip page.
                 </p>
 
-                <PhotoUploader tripId={trip.id} onUploaded={() => {/* gallery auto refresh below */}} />
+                <PhotoUploader tripId={trip.id} onUploaded={() => {}} />
 
                 <div className="mt-4">
                     <PhotoGallery tripId={trip.id} />
@@ -69,7 +69,6 @@ export default function AddTrip() {
         );
     }
 
-    // Initial trip form
     return (
         <div className="max-w-xl mx-auto p-6 space-y-6">
             <h1 className="text-2xl font-semibold">Create a New Trip</h1>

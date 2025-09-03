@@ -75,7 +75,6 @@ def delete_trip(trip_id):
     db.session.delete(t); db.session.commit()
     return {"deleted": trip_id}, 200
 
-# Entries (nested)
 @trips_bp.get("/trips/<int:trip_id>/entries")
 @jwt_required()
 def list_entries(trip_id):
