@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { api } from "../lib/api";
 import PhotoUploader from "../components/PhotoUploader";
 import PhotoGallery from "../components/PhotoGallery";
+import BackButton from "../components/BackButton";
 
 export default function TripDetail() {
   const { id } = useParams();
@@ -32,6 +33,7 @@ export default function TripDetail() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
+        <BackButton />
         <div className="flex items-start justify-between gap-4">
           <h1 className="text-3xl font-bold text-gray-900">{trip.title}</h1>
           <span className="inline-flex items-center text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200">
