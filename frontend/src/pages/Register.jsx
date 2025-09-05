@@ -27,7 +27,7 @@ export default function Register() {
       <h1 className="text-2xl font-semibold mb-4">Register</h1>
       {err && <div className="text-red-600 mb-2">{err}</div>}
       <form onSubmit={onSubmit} className="space-y-3">
-        <input className="border p-2 w-full" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
+        <input className="border p-2 w-full" placeholder="Email or name" value={email} onChange={e=>setEmail(e.target.value)} />
         <input type="password" className="border p-2 w-full" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
         <button className="bg-black text-white px-4 py-2 rounded">Create account</button>
       </form>
