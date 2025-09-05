@@ -18,7 +18,7 @@ export default function Login() {
         catch (e) { setErr(e.message || "Login failed"); }
     }
     return (
-         <div className="max-w-md mx-auto p-6">
+      <div className="max-w-md mx-auto p-6">
       <h1 className="text-2xl font-semibold mb-4">Login</h1>
       {err && <div className="text-red-600 mb-2">{err}</div>}
       <form onSubmit={onSubmit} className="space-y-3">
