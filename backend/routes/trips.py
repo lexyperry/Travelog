@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from extensions import db
-from models import Trip, Entry
+from models import Trip, Entry, Photo
 from schema import TripSchema, EntrySchema
 from datetime import date
 
@@ -68,14 +68,6 @@ def update_trip(trip_id):
     db.session.commit()
     return trip_schema.dump(t)
 
-@trips_bp.delete("/trips/<int:trip_id>")
-@jwt_required()
-def delete_trip(trip_id):
-    uid = get_jwt_identity()
-    t = _owned_trip_or_404(trip_id, uid)
-    db.session.delete(t); db.session.commit()
-    return {"deleted": trip_id}, 200
-
 @trips_bp.get("/trips/<int:trip_id>/entries")
 @jwt_required()
 def list_entries(trip_id):
@@ -112,11 +104,18 @@ def update_entry(entry_id):
     db.session.commit()
     return entry_schema.dump(e)
 
-@trips_bp.delete("/entries/<int:entry_id>")
+
+@trips_bp.delete("/trips/<int:trip_id>")
 @jwt_required()
-def delete_entry(entry_id):
+def delete_trip(trip_id):
     uid = get_jwt_identity()
-    e = Entry.query.get_or_404(entry_id)
-    _owned_trip_or_404(e.trip_id, uid)
-    db.session.delete(e); db.session.commit()
-    return {"deleted": entry_id}, 200
+    t = Trip.query.get_or_404(trip_id)
+
+    _owned_trip_or_404(trip_id, uid)
+
+    Photo.query.filter_by(trip_id=trip_id).delete(synchronize_session=False)
+    Entry.query.filter_by(trip_id=trip_id).delete(synchronize_session=False)
+
+    db.session.delete(t)
+    db.session.commit()
+    return ("", 204)

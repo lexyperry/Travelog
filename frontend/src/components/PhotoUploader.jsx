@@ -48,13 +48,12 @@ export default function PhotoUploader({ tripId, onUploaded }) {
       />
 
       <div className="flex flex-wrap items-center gap-3">
-        {/* Your styled “Choose File” */}
         <button
           type="button"
           onClick={openPicker}
           disabled={busy}
           className={`px-4 py-2 rounded-lg text-black transition
-            ${busy ? "bg-gray-300 cursor-not-allowed"
+            ${busy ? "bg-indigo-300 cursor-not-allowed"
                    : "bg-indigo-600 hover:bg-indigo-700 shadow-sm"}`}
         >
           Choose Image
@@ -73,10 +72,10 @@ export default function PhotoUploader({ tripId, onUploaded }) {
           type="button"
           onClick={upload}
           disabled={!file || busy}
-          className={`ml-auto px-4 py-2 rounded-lg transition
+          className={`bg-blue-600 text-darkgray-600 ml-auto px-4 py-2 rounded-lg transition
             ${!file || busy
-              ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-              : "bg-blue-600 hover:bg-blue-700 text-white shadow-sm"}`}
+              ? "bg-blue-600 text-darkgray-600 cursor-not-allowed"
+              : "bg-blue-600 text-darkgray-600 hover:bg-blue-700 text-white shadow-sm"}`}
         >
           {busy ? "Uploading…" : "Upload"}
         </button>

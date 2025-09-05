@@ -40,7 +40,8 @@ export default function AddTrip() {
     }
 
     return (
-        <div className="max-w-xl mx-auto p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
             <h1 className="text-2xl font-semibold">Create a New Trip</h1>
             {err && <div className="text-red-600">{err}</div>}
 
@@ -121,6 +122,7 @@ export default function AddTrip() {
                     </button>
                 </div>
             </form>
+        </div>
         </div>
     );
 }

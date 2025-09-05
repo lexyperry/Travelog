@@ -13,7 +13,7 @@ def register():
     data = request.get_json() or {}
     email, password = data.get("email"), data.get("password")
     if not email or not password:
-        return {"error": "email and password required"}, 400
+        return {"error": "all fields required"}, 400
     if User.query.filter_by(email=email).first():
         return {"error": "email already registered"}, 409
     u = User(email=email); u.set_password(password)
@@ -29,7 +29,7 @@ def login():
     
     email, password = data.get("email"), data.get("password")
     if not email or not password:
-        return {"error": "email and password required"}, 400
+        return {"error": "all fields required"}, 400
     
     u = User.query.filter_by(email=email).first()
     if not u:

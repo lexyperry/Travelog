@@ -19,8 +19,8 @@ export default function Login() {
       catch (e) { setErr(e.message || "Login failed"); }
   }
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-md p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
             Welcome Back
         </h1>
@@ -50,7 +50,7 @@ export default function Login() {
 
           <button 
               onClick={onSubmit}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-black font-medium py-3 px-6 rounded-lg transition-colors"
           >
               Sign In
           </button>
@@ -61,7 +61,7 @@ export default function Login() {
             Don't have an account?{" "}
             <button 
               className="text-blue-600 hover:text-blue-800 font-medium hover:underline" 
-              onClick={() => console.log("Navigate to register")}
+              onClick={() => nav("/register")}
             >
               Sign up
             </button>
