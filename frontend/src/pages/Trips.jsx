@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
@@ -39,13 +40,13 @@ export default function Trips() {
     return (
         <div className="max-w-4xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-between">
-                <Logout></Logout>
+                <Logout />
                 <h1 className="text-2xl font-semibold">My Trips</h1>
                 <button
-                    onClick={() => nav("/trips/new")}
-                    className="bg-black text-white px-4 py-2 rounded"
+                onClick={() => nav("/trips/new")}
+                className="px-3 py-1 rounded-lg border border-blue-500 text-blue-600 hover:bg-blue-50 transition"
                 >
-                    + Add Trip
+                + Add Trip
                 </button>
             </div>
 
@@ -53,31 +54,39 @@ export default function Trips() {
 
             {!trips.length ? (
                 <div className="text-sm text-gray-600">
-                    You don’t have any trips yet. Click <span className="font-medium">+ Add Trip</span> to create one.
+                You don’t have any trips yet. Click{" "}
+                <span className="font-medium">+ Add Trip</span> to create one.
                 </div>
             ) : (
                 <div className="grid md:grid-cols-2 gap-4">
                     {trips.map(t => (
-                        <div key={t.id} className="border rounded p-4 flex flex-col gap-2">
+                        <div
+                            key={t.id}
+                            className="border rounded-lg p-4 flex flex-col gap-2 shadow-sm bg-white"
+                        >
                             <div className="flex items-center justify-between">
-                                <h2 className="font-semibold">{t.title}</h2>
-                                <span className="text-xs px-2 py-1 rounded bg-gray-100">{t.status || "Planned"}</span>
-                            </div>    
+                                <h2 className="font-semibold text-gray-800">{t.title}</h2>
+                                <span className="text-xs px-2 py-1 rounded bg-gray-200 text-gray-700">
+                                    {t.status || "Planned"}
+                                </span>
+                            </div>
                             <div className="text-sm text-gray-600">
-                                {t.location || "—"}{t.start_date ? ` • ${t.start_date}` : ""}{t.end_date ? ` → ${t.end_date}` : ""}
+                                {t.location || "—"}
+                                {t.start_date ? ` • ${t.start_date}` : ""}
+                                {t.end_date ? ` → ${t.end_date}` : ""}
                             </div>
                             <div className="flex gap-2 mt-2">
                                 <Link
-                                    to={`/trips/${t.id}`}
-                                    className="px-3 py-1 rounded border"
+                                to={`/trips/${t.id}`}
+                                className="px-3 py-1 rounded-lg border border-blue-500 text-blue-600 hover:bg-blue-50 transition"
                                 >
-                                    Open
+                                Open
                                 </Link>
                                 <button
-                                    onClick={() => remove(t.id)}
-                                    className="px-3 py-1 rounded border text-red-600 border-red-300 hover:bg-red-50"
+                                onClick={() => remove(t.id)}
+                                className="px-3 py-1 rounded-lg border border-red-500 text-red-600 hover:bg-red-50 transition"
                                 >
-                                    Delete
+                                Delete
                                 </button>
                             </div>
                         </div>

@@ -19,7 +19,11 @@ export default function Logout(){
     
     return (
         <div>
-            {err && <div className="text-red-600 mb-2">{err}</div>}
+            {err && 
+                <div className="px-3 py-1 rounded-lg border border-red-500 text-red-600 hover:bg-red-50 transition">
+                    {err}
+                </div>
+            }
             <button onClick={handleLogout}>
                 Logout
             </button>
