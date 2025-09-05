@@ -38,7 +38,9 @@ export default function Trips() {
     if (loading) return <div className="p-6">Loading…</div>;
 
     return (
-        <div className="max-w-4xl mx-auto p-6 space-y-6">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-10">
+            <div className="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-6 md:p-8 space-y-6">
+                
             <div className="flex items-center justify-between">
                 <Logout />
                 <h1 className="text-2xl font-semibold">My Trips</h1>
@@ -93,6 +95,7 @@ export default function Trips() {
                     ))}
                 </div>
             )}
+            </div>
         </div>
     );
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
-import PhotoUploader from "../components/PhotoUploader";
-import PhotoGallery from "../components/PhotoGallery";
 
 export default function AddTrip() {
     const nav = useNavigate();
@@ -38,36 +36,7 @@ export default function AddTrip() {
     }
 
     if (trip) {
-        // After creation: show immediate photo upload + continue button
-        return (
-            <div className="max-w-3xl mx-auto p-6 space-y-6">
-                <h1 className="text-2xl font-semibold">Add Photos to “{trip.title}”</h1>
-                <p className="text-sm text-gray-600">
-                    You can upload a few photos now, or skip and add them later from the trip page.
-                </p>
-
-                <PhotoUploader tripId={trip.id} onUploaded={() => {}} />
-
-                <div className="mt-4">
-                    <PhotoGallery tripId={trip.id} />
-                </div>
-
-                <div className="flex gap-2">
-                    <button
-                        className="bg-black text-white px-4 py-2 rounded"
-                        onClick={() => nav(`/trips/${trip.id}`)}
-                    >
-                        Continue to Trip
-                    </button>
-                    <button
-                        className="px-4 py-2 rounded border"
-                        onClick={() => nav("/")}
-                    >
-                        Back to Trips
-                    </button>
-                </div>
-            </div>
-        );
+        nav(`/trips/${trip.id}`);
     }
 
     return (
@@ -138,7 +107,7 @@ export default function AddTrip() {
 
                 <div className="flex gap-2">
                     <button
-                        className="bg-black text-white px-4 py-2 rounded"
+                        className="px-3 py-1 rounded-lg border border-blue-500 text-blue-600 hover:bg-blue-50 transition"
                         disabled={busy}
                     >
                         {busy ? "Creating…" : "Create Trip"}
