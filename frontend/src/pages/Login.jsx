@@ -11,7 +11,10 @@ export default function Login() {
 
     async function onSubmit(e) {
         e.preventDefault();
-        try { await login(email,password); nav("/"); }
+        try { 
+          await login(email,password); 
+          nav("/");
+         }
         catch (e) { setErr(e.message || "Login failed"); }
     }
     return (
