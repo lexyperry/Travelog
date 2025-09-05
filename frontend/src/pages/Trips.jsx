@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api } from "../lib/api";
+import Logout from "../components/Logout"
 
 export default function Trips() {
     const [trips, setTrips] = useState([]);
@@ -38,6 +39,7 @@ export default function Trips() {
     return (
         <div className="max-w-4xl mx-auto p-6 space-y-6">
             <div className="flex items-center justify-between">
+                <Logout></Logout>
                 <h1 className="text-2xl font-semibold">My Trips</h1>
                 <button
                     onClick={() => nav("/trips/new")}
