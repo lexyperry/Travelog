@@ -84,3 +84,4 @@ Resp: sets a new access cookie; 200 { ok: true }.
 
 POST /api/auth/logout
 Resp: clears cookies; 200 { ok: true }.
+
